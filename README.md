@@ -4,11 +4,9 @@ This project is a server-authoritative multiplayer Tic-Tac-Toe game built with a
 
 ## Submission Deliverables
 
-- Source code repository: `<add your GitHub/GitLab repository URL here>`
-- Deployed game URL: `<add your Vercel or other frontend deployment URL here>`
-- Deployed Nakama server endpoint: `<add your Railway public domain here>`
-
-If you are submitting this repository directly, fill in those three URLs before sharing the final README.
+- Source code repository: `https://github.com/KathanShah6503/tic-tac-toe`
+- Deployed game URL: `https://tic-tac-toe-frontend-gold.vercel.app`
+- Deployed Nakama server endpoint: `https://nakama-runtime-production.up.railway.app`
 
 ## Tech Stack
 
