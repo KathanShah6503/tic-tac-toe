@@ -1,8 +1,9 @@
 #!/bin/sh
 set -eu
 
-: "${PORT:=7350}"
 : "${NAKAMA_CORS_ALLOWED_ORIGIN:=https://tic-tac-toe-frontend-gold.vercel.app}"
+: "${NAKAMA_SOCKET_ADDRESS:=0.0.0.0}"
+: "${NAKAMA_SOCKET_PORT:=${PORT:-7350}}"
 : "${NAKAMA_CONSOLE_ADDRESS:=127.0.0.1}"
 : "${NAKAMA_CONSOLE_PORT:=7351}"
 : "${NAKAMA_SERVER_KEY:?set NAKAMA_SERVER_KEY}"
@@ -30,21 +31,11 @@ database:
     address:
         - "${DATABASE_ADDRESS}"
 socket:
-    address: "0.0.0.0"
-    port: ${PORT}
+    address: "${NAKAMA_SOCKET_ADDRESS}"
+    port: ${NAKAMA_SOCKET_PORT}
     server_key: "${NAKAMA_SERVER_KEY}"
-    allowed_origins:
-        - "http://localhost:5173"
-        - "${NAKAMA_CORS_ALLOWED_ORIGIN}"
-    response_headers:
-        - "Access-Control-Allow-Origin=${NAKAMA_CORS_ALLOWED_ORIGIN}"
-        - "Access-Control-Allow-Headers=Authorization,Content-Type"
-        - "Access-Control-Allow-Methods=GET,POST,PUT,DELETE,OPTIONS"
 session:
     encryption_key: "${NAKAMA_SESSION_ENCRYPTION_KEY}"
-cors:
-  - "http://localhost:5173"  # Your React app's local address
-  - "${NAKAMA_CORS_ALLOWED_ORIGIN}"
 runtime:
     http_key: "${NAKAMA_HTTP_KEY}"
 console:
