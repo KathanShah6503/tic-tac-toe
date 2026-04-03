@@ -2,7 +2,7 @@
 set -eu
 
 : "${PORT:=7350}"
-: "${NAKAMA_CORS_ALLOWED_ORIGIN:=https://tic-tac-toe-frontend-gold.vercel.app}"
+: "${NAKAMA_CORS_ALLOWED_ORIGIN:=*}"
 : "${NAKAMA_CONSOLE_ADDRESS:=127.0.0.1}"
 : "${NAKAMA_CONSOLE_PORT:=7351}"
 : "${NAKAMA_SERVER_KEY:?set NAKAMA_SERVER_KEY}"
@@ -34,9 +34,9 @@ socket:
     port: ${PORT}
     server_key: "${NAKAMA_SERVER_KEY}"
     response_headers:
-        Access-Control-Allow-Origin: "${NAKAMA_CORS_ALLOWED_ORIGIN}"
-        Access-Control-Allow-Headers: "Content-Type, Authorization, X-Requested-With"
-        Access-Control-Allow-Methods: "GET, POST, PUT, DELETE, OPTIONS"
+        - "Access-Control-Allow-Origin=${NAKAMA_CORS_ALLOWED_ORIGIN}"
+        - "Access-Control-Allow-Headers=Content-Type, Authorization, X-Requested-With"
+        - "Access-Control-Allow-Methods=GET, POST, PUT, DELETE, OPTIONS"
 session:
     encryption_key: "${NAKAMA_SESSION_ENCRYPTION_KEY}"
 runtime:
