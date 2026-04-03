@@ -24,6 +24,6 @@ COPY deploy/railway-start.sh /usr/local/bin/railway-start.sh
 
 RUN chmod +x /usr/local/bin/railway-start.sh /usr/local/bin/railway-entrypoint.sh
 
-EXPOSE 7350
+EXPOSE 8080
 
 ENTRYPOINT ["/usr/local/bin/railway-entrypoint.sh"]

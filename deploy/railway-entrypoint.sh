@@ -1,9 +1,9 @@
 #!/bin/sh
 set -eu
 
-: "${PORT:=7350}"
 : "${NAKAMA_SOCKET_PORT:=7350}"
 : "${NAKAMA_SOCKET_ADDRESS:=127.0.0.1}"
+: "${PORT:=8080}"
 
 export PORT
 export NAKAMA_SOCKET_PORT

@@ -15,5 +15,9 @@
 
   respond @preflight 204
 
-  reverse_proxy 127.0.0.1:{$NAKAMA_SOCKET_PORT}
+  reverse_proxy 127.0.0.1:{$NAKAMA_SOCKET_PORT} {
+    header_down -Access-Control-Allow-Origin
+    header_down -Access-Control-Allow-Headers
+    header_down -Access-Control-Allow-Methods
+  }
 }
