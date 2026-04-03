@@ -1,0 +1,14 @@
+name: "tic-tac-toe"
+database:
+    address:
+        - "root@cockroachdb:26257"
+socket:
+    server_key: "w/FWVnjzP5dgqkNgbeZT6ce7vjVR0JUFjR1HWztJzQ2FZdrNIyEW7F47KKwSdjtR"
+session:
+    encryption_key: "HKfLFjNiOH7uw6hQVaJpo9LsAYCzeTRmQC2k7q2oBrqyoGjE9T4en9zjhAQDYWW5"
+runtime:
+    http_key: "NLOUmZhW2URZkj/PAsSU70XltIjUTy/qSbT2HEXsVMI5ER7YSoeeDx0AVfA68Y0x"
+console:
+    username: "admin"
+    password: "password"
+shutdown_grace_sec: 30

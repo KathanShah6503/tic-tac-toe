@@ -1,0 +1,29 @@
+:root {
+  --font-family-base: "Segoe UI", "Trebuchet MS", sans-serif;
+  --color-text: #edf6ff;
+  --color-text-muted: #9fb4c9;
+  --color-surface: rgba(12, 23, 38, 0.88);
+  --color-surface-soft: rgba(92, 136, 184, 0.14);
+  --color-surface-strong: rgba(100, 145, 194, 0.18);
+  --color-accent-start: #49c6ff;
+  --color-accent-end: #7a7dff;
+  --color-accent-text: #08111b;
+  --color-danger: rgba(171, 53, 64, 0.9);
+  --color-danger-text: #ffc4c9;
+  --color-mark-x: #49c6ff;
+  --color-mark-o: #ff8a65;
+  --color-win: #bbff6f;
+  --color-border: rgba(120, 190, 255, 0.18);
+  --shadow-panel: 0 26px 80px rgba(0, 0, 0, 0.34);
+  --radius-panel: 28px;
+  --radius-card: 18px;
+  --radius-pill: 999px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+}

@@ -1,0 +1,151 @@
+.page-shell {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: var(--space-6);
+  position: relative;
+}
+
+.nickname-shell {
+  align-items: center;
+  display: grid;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  padding: var(--space-6);
+}
+
+.nickname-card {
+  background:
+    radial-gradient(circle at top right, rgba(73, 198, 255, 0.16), transparent 24%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+  margin: 0 auto;
+  max-width: 720px;
+  padding: var(--space-8);
+  width: 100%;
+}
+
+.hero-card,
+.panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+    var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card {
+  padding: var(--space-7);
+}
+
+.hero-card.compact {
+  min-height: 0;
+  padding: var(--space-6);
+}
+
+.hero-card::before,
+.panel::before,
+.nickname-card::before {
+  background: linear-gradient(90deg, transparent, rgba(73, 198, 255, 0.12), transparent);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.content-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: var(--space-5);
+}
+
+.match-stage {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-5);
+}
+
+.match-stage .game-panel {
+  max-width: 760px;
+  width: 100%;
+}
+
+.panel {
+  padding: 22px;
+}
+
+.game-panel {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header,
+.status-strip,
+.mode-grid,
+.action-row,
+.player-grid,
+.nickname-footer {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.panel-header-stack {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.status-strip,
+.mode-grid,
+.action-row,
+.player-grid,
+.nickname-footer {
+  flex-wrap: wrap;
+}
+
+.nickname-form {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.nickname-footer {
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding: var(--space-4);
+  }
+
+  .nickname-shell {
+    padding: var(--space-4);
+  }
+
+  .nickname-card,
+  .hero-card,
+  .panel {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  .hero-card.compact {
+    padding: 18px;
+  }
+
+  .nickname-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

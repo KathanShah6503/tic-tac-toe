@@ -1,0 +1,19 @@
+{
+  "files": [
+    "./src/messages.ts",
+    "./src/match_rpc.ts",
+    "./src/match_handler.ts",
+    "./src/main.ts"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "none",
+    "outFile": "./build/index.js",
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": false,
+    "typeRoots": [
+      "./node_modules"
+    ]
+  }
+}

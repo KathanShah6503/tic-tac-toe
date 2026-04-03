@@ -1,0 +1,12 @@
+{
+  "name": "nakama-runtime",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "nakama-runtime": "github:heroiclabs/nakama-common",
+    "typescript": "^5.8.2"
+  }
+}
+

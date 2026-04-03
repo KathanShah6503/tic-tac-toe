@@ -1,0 +1,17 @@
+{
+  "name": "tic-tac-toe-nakama",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "nakama"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace frontend && npm run build --workspace nakama",
+    "dev": "npm run dev --workspace frontend",
+    "lint": "npm run lint --workspace frontend",
+    "typecheck": "npm run typecheck --workspace frontend && npm run build --workspace nakama"
+  },
+  "dependencies": {
+    "@heroiclabs/nakama-js": "^2.8.0"
+  }
+}
