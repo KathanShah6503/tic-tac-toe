@@ -1,46 +1,42 @@
 services:
-  cockroachdb:
-    image: cockroachdb/cockroach:v24.3.3
-    command: start-single-node --insecure --store=attrs=ssd,path=/cockroach/cockroach-data
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${PGDATABASE:-nakama}
+      POSTGRES_USER: ${PGUSER:-postgres}
+      POSTGRES_PASSWORD: ${PGPASSWORD:-postgres}
     volumes:
-      - ./cockroach-data:/cockroach/cockroach-data
+      - ./postgres-data:/var/lib/postgresql/data
     ports:
-      - "26257:26257"
-      - "8080:8080"
-    healthcheck:
-      test: ["CMD", "/cockroach/cockroach", "sql", "--insecure", "--host=localhost:26257", "--execute=SELECT 1;"]
-      interval: 5s
-      timeout: 5s
-      retries: 12
-      start_period: 10s
+      - "5432:5432"
 
   nakama:
     image: registry.heroiclabs.com/heroiclabs/nakama:3.32.1
     depends_on:
-      cockroachdb:
-        condition: service_healthy
+      postgres:
+        condition: service_started
     restart: on-failure
+    environment:
+      PORT: 7350
+      NAKAMA_CONSOLE_ADDRESS: 0.0.0.0
+      NAKAMA_CONSOLE_PORT: 7351
+      PGHOST: postgres
+      PGPORT: 5432
+      PGDATABASE: ${PGDATABASE:-nakama}
+      PGUSER: ${PGUSER:-postgres}
+      PGPASSWORD: ${PGPASSWORD:-postgres}
+      NAKAMA_SERVER_KEY: ${NAKAMA_SERVER_KEY:?set NAKAMA_SERVER_KEY in a local .env or shell}
+      NAKAMA_SESSION_ENCRYPTION_KEY: ${NAKAMA_SESSION_ENCRYPTION_KEY:?set NAKAMA_SESSION_ENCRYPTION_KEY in a local .env or shell}
+      NAKAMA_HTTP_KEY: ${NAKAMA_HTTP_KEY:?set NAKAMA_HTTP_KEY in a local .env or shell}
+      NAKAMA_CONSOLE_USERNAME: ${NAKAMA_CONSOLE_USERNAME:?set NAKAMA_CONSOLE_USERNAME in a local .env or shell}
+      NAKAMA_CONSOLE_PASSWORD: ${NAKAMA_CONSOLE_PASSWORD:?set NAKAMA_CONSOLE_PASSWORD in a local .env or shell}
     entrypoint:
-      - "/bin/sh"
-      - "-ecx"
-      - >
-        /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
-        exec /nakama/nakama --config /nakama/data/config.yml --database.address root@cockroachdb:26257
+      - "/usr/local/bin/railway-start.sh"
     ports:
       - "7349:7349"
       - "7350:7350"
       - "7351:7351"
     volumes:
       - ./nakama/build:/nakama/data/modules
-      - ./deploy/config.yml:/nakama/data/config.yml
-
-  # nginx:
-  #   image: nginx:1.27-alpine
-  #   depends_on:
-  #     - nakama
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - ./deploy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-  #     - ./deploy/certs:/etc/nginx/certs:ro
+      - ./deploy/railway-start.sh:/usr/local/bin/railway-start.sh:ro
